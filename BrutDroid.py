@@ -144,12 +144,13 @@ def run_frida_server():
 
 def setup_cert_with_magisk():
     os.system('cls' if os.name == 'nt' else 'clear')
-    print("\033[96m→ Setting Up Burp Certificate...\033[0m")
-    print("\033[96m  Before proceeding:\033[0m")
-    print("  - Ensure Burp Suite is running on port 8080.")
-    print("  - Set emulator proxy: Settings → Network → Proxy")
-    print("    → Host: 127.0.0.1, Port: 8080")
-    print("\033[96m  Waiting 20s for proxy setup...\033[0m")
+    print("\033[96m→ Setting Up Burp Certificate...\033[0m\n"
+    "\033[96m  Before proceeding:\033[0m\n"
+    "  - Ensure Burp Suite is running on port 8080.\n"
+    "  - Set emulator proxy: Settings → Network → Proxy\n"
+    "    → Host: 127.0.0.1, Port: 8080\n"
+    "\033[96m  Waiting 20s for proxy setup...\033[0m\n")
+
     for i in range(20, 0, -1):
         print(f"\r\033[96m  {i}s left...\033[0m", end="", flush=True)
         time.sleep(1)
@@ -185,13 +186,13 @@ def setup_cert_with_magisk():
         print("\033[96m  Installing Magisk module...\033[0m")
         os.system(f"{ADB} push {filename} /data/local/tmp/")
         os.system(f"{ADB} shell su -c 'magisk --install-module /data/local/tmp/{filename}'")
-        print("\033[92m✔ Module installed.\033[0m")
-        print("\n\033[93m→ Action Required:\033[0m")
-        print("  1. Go to Settings → Security → Encryption & Credentials")
-        print("  2. Select 'Install from SD card'")
-        print("  3. Choose '/sdcard/portswigger.crt'")
-        print("  4. Name it 'portswigger'")
-        print("\033[96m  Waiting 60s for installation...\033[0m")
+        print("\033[92m✔ Module installed.\033[0m\n"
+        "\n\033[93m→ Action Required:\033[0m\n"
+        "  1. Go to Settings → Security → Encryption & Credentials\n"
+        "  2. Select 'Install from SD card'\n"
+        "  3. Choose '/sdcard/portswigger.crt'\n"
+        "  4. Name it 'portswigger'\n"
+        "\033[96m  Waiting 60s for installation...\033[0m")
         for i in range(60, 0, -1):
             print(f"\r\033[96m  {i}s left...\033[0m", end="", flush=True)
             time.sleep(1)
@@ -205,16 +206,16 @@ def setup_cert_with_magisk():
 
 def show_virtual_device_instructions():
     os.system('cls' if os.name == 'nt' else 'clear')
-    print("\033[1;93m→ Creating a Virtual Device:\033[0m")
-    print("\033[1;36m  1. Open Android Studio → AVD Manager\033[0m")
-    print("\033[1;36m  2. Click 'Create Virtual Device'\033[0m")
-    print("\033[1;36m  3. Select a device (e.g., Pixel 6, Pixel 5, Pixel 4)\033[0m")
-    print("\033[1;36m  4. Choose system image:\033[0m")
-    print("\033[1;36m     - API Level: 31 (Android 12)\033[0m")
-    print("\033[1;36m     - Architecture: x86_64/arm64\033[0m")
-    print("\033[1;36m  5. Complete setup\033[0m")
-    print("\n\033[1;93m→ Note: Ensure API Level 31 and x86_64/arm64 architecture for compatibility.\033[0m")
-    print("\033[92m✔ Instructions displayed.\033[0m")
+    print("\033[1;93m→ Creating a Virtual Device:\033[0m\n"
+      "\033[1;36m  1. Open Android Studio → AVD Manager\033[0m\n"
+      "\033[1;36m  2. Click 'Create Virtual Device'\033[0m\n"
+      "\033[1;36m  3. Select a device (e.g., Pixel 6, Pixel 5, Pixel 4)\033[0m\n"
+      "\033[1;36m  4. Choose system image:\033[0m\n"
+      "\033[1;36m     - API Level: 31 (Android 12)\033[0m\n"
+      "\033[1;36m     - Architecture: x86_64/arm64\033[0m\n"
+      "\033[1;36m  5. Complete setup\033[0m\n"
+      "\n\033[1;93m→ Note: Ensure API Level 31 and x86_64/arm64 architecture for compatibility.\033[0m\n"
+      "\033[92m✔ Instructions displayed.\033[0m")
     input("\033[96m→ Press Enter to continue...\033[0m")
     os.system('cls' if os.name == 'nt' else 'clear')
 
@@ -265,13 +266,13 @@ def install_magisk_and_patch_rootavd():
         os.chdir(bat_dir)
         os.system('cmd /c "rootAVD.bat ListAllAVDs"')
 
-        print("\n\033[1;93m→ Verify Emulator Details:\033[0m")
-        print("\033[1;36m  1. Open Android Studio → Virtual Device Manager\033[0m")
-        print("\033[1;36m  2. Select your emulator and check:\033[0m")
-        print("\033[1;36m     - API Level: 31 (Android 12)\033[0m")
-        print("\033[1;36m     - Architecture: x86_64/arm64\033[0m")
-        print("\033[1;36m  3. Note the system image path from the AVD details\033[0m")
-        print("\033[1;93m→ Enter the system image path (e.g., system-images\\android-31\\google_apis\\x86_64\\ramdisk.img):\033[0m")
+        print("\n\033[1;93m→ Verify Emulator Details:\033[0m\n"
+        "\033[1;36m  1. Open Android Studio → Virtual Device Manager\033[0m\n"
+        "\033[1;36m  2. Select your emulator and check:\033[0m\n"
+        "\033[1;36m     - API Level: 31 (Android 12)\033[0m\n"
+        "\033[1;36m     - Architecture: x86_64/arm64\033[0m\n"
+        "\033[1;36m  3. Note the system image path from the AVD details\033[0m\n"
+        "\033[1;93m→ Enter the system image path (e.g., system-images\\android-31\\google_apis\\x86_64\\ramdisk.img):\033[0m")
         img_path = input("\033[1;36mPath: \033[0m")
 
         print("\033[96m  Patching image...\033[0m")
@@ -295,11 +296,11 @@ def install_magisk_and_patch_rootavd():
         print("\033[96m  Requesting root...\033[0m")
         os.system("adb shell su -c 'echo Root granted'")
 
-        print("\n\033[1;93m→ Action Required:\033[0m")
-        print("\033[1;36m  1. Open the Magisk app on the emulator\033[0m")
-        print("\033[1;36m  2. Click 'OK' on the popup to complete setup\033[0m")
-        print("\033[1;36m  3. The emulator will reboot automatically\033[0m")
-        print("\033[96m  Waiting 10s for you to complete this step...\033[0m")
+        print("\n\033[1;93m→ Action Required:\033[0m\n"
+        "\033[1;36m  1. Open the Magisk app on the emulator\033[0m\n"
+        "\033[1;36m  2. Click 'OK' on the popup to complete setup\033[0m\n"
+        "\033[1;36m  3. The emulator will reboot automatically\033[0m\n"
+        "\033[96m  Waiting 10s for you to complete this step...\033[0m\n")
         time.sleep(10)
         print("\033[92m✔ Root setup complete.\033[0m")
     except Exception as e:
@@ -311,13 +312,13 @@ def frida_tool_options():
     while True:
         os.system('cls' if os.name == 'nt' else 'clear')
         display_banner()
-        print("\n\033[96mFrida Tools:\033[0m")
-        print("  1. List Apps")
-        print("  2. Bypass SSL Pinning")
-        print("  3. Bypass Root Check")
-        print("  4. Bypass SSL + Root")
-        print("  5. Run Frida Server")
-        print("  6. Back")
+        print("\n\033[96mFrida Tools:\033[0m\n"
+        "  1. List Apps\n"
+        "  2. Bypass SSL Pinning\n"
+        "  3. Bypass Root Check\n"
+        "  4. Bypass SSL + Root\n"
+        "  5. Run Frida Server\n"
+        "  6. Back\n")
         choice = input("\033[92m→ Choose: \033[0m")
         if choice == "1":
             os.system('cls' if os.name == 'nt' else 'clear')
@@ -364,13 +365,13 @@ def display_main_menu():
     while True:
         os.system('cls' if os.name == 'nt' else 'clear')
         display_banner()
-        print("\n\033[96mMain Menu:\033[0m")
-        print("  1. Create Virtual Device")
-        print("  2. Root Emulator")
-        print("  3. Install Tools")
-        print("  4. Configure Emulator")
-        print("  5. Frida Tools")
-        print("  6. Exit")
+        print("\n\033[96mMain Menu:\033[0m\n"
+        "  1. Create Virtual Device\n"
+        "  2. Root Emulator\n"
+        "  3. Install Tools\n"
+        "  4. Configure Emulator\n"
+        "  5. Frida Tools\n"
+        "  6. Exit\n")
         choice = input("\033[92m→ Choose: \033[0m")
         if choice == "1":
             show_virtual_device_instructions()
@@ -391,12 +392,12 @@ def display_windows_tools_menu():
     while True:
         os.system('cls' if os.name == 'nt' else 'clear')
         display_banner()
-        print("\n\033[96mInstall Tools:\033[0m")
-        print("  1. Frida")
-        print("  2. Frida-Tools")
-        print("  3. Objection")
-        print("  4. Reflutter")
-        print("  5. Back")
+        print("\n\033[96mInstall Tools:\033[0m\n"
+        "  1. Frida\n"
+        "  2. Frida-Tools\n"
+        "  3. Objection\n"
+        "  4. Reflutter\n"
+        "  5. Back\n")
         choice = input("\033[92m→ Choose: \033[0m")
         tools = {"1": "frida", "2": "frida-tools", "3": "objection", "4": "reflutter"}
         if choice in tools:
@@ -413,11 +414,12 @@ def display_emulator_options_menu():
     while True:
         os.system('cls' if os.name == 'nt' else 'clear')
         display_banner()
-        print("\n\033[96mConfigure Emulator:\033[0m")
-        print("  1. Install Frida Server")
-        print("  2. Run Frida Server")
-        print("  3. Install Burp Certificate")
-        print("  4. Back")
+        print("\n\033[96mConfigure Emulator:\033[0m\n"
+        "  1. Install Frida Server\n"
+        "  2. Run Frida Server\n"
+        "  3. Install Burp Certificate\n"
+        "  4. Back\n")
+
         choice = input("\033[92m→ Choose: \033[0m")
         if choice == "1":
             install_frida_server()
